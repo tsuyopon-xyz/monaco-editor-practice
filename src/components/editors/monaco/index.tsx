@@ -98,8 +98,6 @@ export const MonacoEditor = () => {
       <div className="h-[calc(100%-2.5rem)]">
         <Editor
           width="100%"
-          // defaultLanguage="typescript"
-          // defaultValue="// some comment"
           theme="vs-dark"
           options={{
             minimap: {
