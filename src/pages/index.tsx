@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { HorizontalSplit } from '@/components/sprits/Horizontal';
-import { MonacoEditor } from '@/components/editors/monaco';
+import { Editor } from '@/components/editors/monaco/Editor';
+import { Preview } from '@/components/editors/monaco/Preview';
 
 const Home: NextPage = () => {
   return (
@@ -14,9 +15,11 @@ const Home: NextPage = () => {
       <main className="h-[calc(100%-8rem)]">
         <HorizontalSplit>
           <div className="h-full">
-            <MonacoEditor />
+            <Editor />
           </div>
-          <div className="h-full">右</div>
+          <div className="h-full">
+            <Preview />
+          </div>
         </HorizontalSplit>
       </main>
 

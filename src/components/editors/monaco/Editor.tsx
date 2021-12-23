@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
+import MonacoEditor, {
+  DiffEditor,
+  useMonaco,
+  loader,
+} from '@monaco-editor/react';
+import type { EditorFileInfo } from '@/types/editors/monaco';
+import { useEditorData } from '@/providers/EditorProvider';
 
 const LANGUAGE_MAP = {
   html: 'html',
@@ -10,13 +16,6 @@ const LANGUAGE_MAP = {
   ts: 'typescript',
 };
 type ValidFileExtensionKeys = keyof typeof LANGUAGE_MAP;
-
-type EditorFileInfo = {
-  name: string;
-  language: string;
-  value: string;
-};
-type EditorFileInfoList = EditorFileInfo[];
 
 const loadFileInfo = async (url: string): Promise<EditorFileInfo> => {
   const response = await axios.get(url);
@@ -37,7 +36,7 @@ const loadFileInfo = async (url: string): Promise<EditorFileInfo> => {
 
 const loadFileInfoList = async (
   urlList: string[]
-): Promise<EditorFileInfoList> => {
+): Promise<EditorFileInfo[]> => {
   const promises = urlList.map((url) => {
     return loadFileInfo(url);
   });
@@ -47,9 +46,8 @@ const loadFileInfoList = async (
   return fileInfoList;
 };
 
-export const MonacoEditor = () => {
-  const [editorFileInfoList, setEditorFileInfoList] =
-    useState<EditorFileInfoList>([]);
+export const Editor = () => {
+  const { editorInfoList, setEditorInfoList } = useEditorData();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
@@ -62,18 +60,18 @@ export const MonacoEditor = () => {
       ];
 
       const editorFileInfoList = await loadFileInfoList(urls);
-      setEditorFileInfoList(editorFileInfoList);
+      setEditorInfoList(editorFileInfoList);
     }
 
     loadFiles();
   }, []);
 
-  if (editorFileInfoList.length === 0) {
+  if (editorInfoList.length === 0) {
     return <div>Now loading...</div>;
   }
 
   const createEditorTabs = () => {
-    return editorFileInfoList.map((fileInfo, index) => {
+    return editorInfoList.map((fileInfo, index) => {
       const bgColor = index === selectedIndex ? 'bg-gray-700' : 'bg-gray-900';
 
       return (
@@ -88,7 +86,7 @@ export const MonacoEditor = () => {
     });
   };
 
-  const file = editorFileInfoList[selectedIndex];
+  const fileInfo = editorInfoList[selectedIndex];
 
   return (
     <div className="h-full">
@@ -96,7 +94,7 @@ export const MonacoEditor = () => {
         {createEditorTabs()}
       </ul>
       <div className="h-[calc(100%-2.5rem)]">
-        <Editor
+        <MonacoEditor
           width="100%"
           theme="vs-dark"
           options={{
@@ -111,9 +109,15 @@ export const MonacoEditor = () => {
             editor.focus();
           }}
           loading={<div>Now loading...</div>}
-          path={file.name}
-          defaultLanguage={file.language}
-          defaultValue={file.value}
+          path={fileInfo.name}
+          defaultLanguage={fileInfo.language}
+          defaultValue={fileInfo.value}
+          onChange={_.debounce(function (value) {
+            console.log(value);
+            const copiedEditorInfoList = [...editorInfoList];
+            copiedEditorInfoList[selectedIndex].value = value || '';
+            setEditorInfoList(copiedEditorInfoList);
+          }, 200)}
         />
       </div>
     </div>
