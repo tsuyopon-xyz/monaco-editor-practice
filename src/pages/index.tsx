@@ -4,7 +4,7 @@ import { MonacoEditor } from '@/components/editors/monaco';
 
 const Home: NextPage = () => {
   return (
-    <div className="h-screen bg-red-200">
+    <div className="h-screen">
       <header className="bg-blue-400 py-4 px-4 z-10 h-16">
         <h1 className="text-2xl text-white font-bold ">
           プログラミング学習用エディタ

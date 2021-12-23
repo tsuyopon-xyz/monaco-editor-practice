@@ -26,3 +26,36 @@ https://split.js.org/#/
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
   cursor: row-resize;
 }
+
+
+/************************
+Custom scrollbar width
+- https://stackoverflow.com/questions/66416614/how-to-create-scrollable-element-in-tailwind-without-a-scrollbar
+- https://stackoverflow.com/questions/4053220/how-can-i-increase-a-scrollbars-width-using-css
+************************/
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+.tab-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.tab-scrollbar::-webkit-scrollbar-button {
+  background: #ccc
+}
+.tab-scrollbar::-webkit-scrollbar-track-piece {
+  background: #888
+}
+.tab-scrollbar::-webkit-scrollbar-thumb {
+  background: #eee
+}
