@@ -56,7 +56,6 @@ export const Editor = () => {
         '/code-files/index.html',
         '/code-files/style.css',
         '/code-files/main.js',
-        '/code-files/main.ts',
       ];
 
       const editorFileInfoList = await loadFileInfoList(urls);

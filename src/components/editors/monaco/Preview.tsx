@@ -5,6 +5,17 @@ export const Preview = () => {
   const htmlInfo = editorInfoList.find((fileInfo) =>
     fileInfo.name.includes('html')
   );
+  const cssInfo = editorInfoList.find((fileInfo) =>
+    fileInfo.name.includes('css')
+  );
+  const jsInfo = editorInfoList.find((fileInfo) =>
+    fileInfo.name.includes('js')
+  );
 
-  return <iframe srcDoc={htmlInfo?.value}>Monaco Preview.</iframe>;
+  const cssCode = cssInfo?.value ? `<style>${cssInfo.value}</style>` : '';
+  const jsCode = jsInfo?.value ? `<script>${jsInfo.value}</script>` : '';
+  const htmlCode = htmlInfo?.value ? `${htmlInfo.value}` : '';
+  const code = cssCode + htmlCode + jsCode;
+
+  return <iframe srcDoc={code}></iframe>;
 };
