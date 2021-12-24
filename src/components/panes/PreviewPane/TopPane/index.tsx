@@ -1,6 +1,7 @@
 import { EyeIcon } from '@heroicons/react/solid';
 import { ArrowsExpandIcon } from '@heroicons/react/outline';
 import { PaneWithHeader } from '@/components/panes/PaneWithHeader';
+import { Preview } from '@/components/editors/monaco/Preview';
 
 export const PreviewTopPane = () => {
   return (
@@ -9,7 +10,8 @@ export const PreviewTopPane = () => {
       headerTitle="プレビュー"
       headerMenu={<ArrowsExpandIcon width={20} />}
     >
-      This is Preview Top Pane
+      {/* TODO: Previewコンポーネントを外部から受け取れるようにする */}
+      <Preview />
     </PaneWithHeader>
   );
 };

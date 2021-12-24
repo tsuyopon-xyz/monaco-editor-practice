@@ -16,7 +16,7 @@ export const PaneWithHeader: FC<Props> = ({
   return (
     <div className="p-2 h-full">
       <PaneHeader icon={headerIcon} title={headerTitle} menu={headerMenu} />
-      <div className="h-[calc(100%-3rem)] border border-gray-200 rounded-b-xl p-2 overflow-scroll">
+      <div className="h-[calc(100%-3rem)] border border-gray-200 rounded-b-xl overflow-scroll">
         {children}
       </div>
     </div>
