@@ -6,11 +6,6 @@
 /************************
 https://split.js.org/#/
 ************************/
-.split {
-  display: flex;
-  flex-direction: row;
-}
-
 .gutter {
   background-color: #eee;
   background-repeat: no-repeat;

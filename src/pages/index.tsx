@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { HorizontalSplit } from '@/components/sprits/Horizontal';
 import { Editor } from '@/components/editors/monaco/Editor';
 import { Preview } from '@/components/editors/monaco/Preview';
+import { EditorPane, InstractionPane, PreviewPane } from '@/components/panes';
 
 const Home: NextPage = () => {
   return (
@@ -14,12 +15,9 @@ const Home: NextPage = () => {
 
       <main className="h-[calc(100%-8rem)]">
         <HorizontalSplit>
-          <div className="h-full">
-            <Editor />
-          </div>
-          <div className="h-full">
-            <Preview />
-          </div>
+          <InstractionPane />
+          <EditorPane />
+          <PreviewPane />
         </HorizontalSplit>
       </main>
 
