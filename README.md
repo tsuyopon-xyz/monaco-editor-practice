@@ -2,7 +2,7 @@
 
 以下の画像をクリックしたらYouTube動画に飛びます。
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/m0j6YEWbAZ4/0.jpg)](https://www.youtube.com/watch?v=m0j6YEWbAZ4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/LbOkPRvo6Vk/0.jpg)](https://www.youtube.com/watch?v=LbOkPRvo6Vk)
 
 
 ## このレポジトリの概要
